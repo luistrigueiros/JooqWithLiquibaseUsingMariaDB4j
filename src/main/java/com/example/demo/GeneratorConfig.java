@@ -1,10 +1,7 @@
 package com.example.demo;
 
-//import org.jooq.codegen.Generator;
 
 import org.jooq.meta.jaxb.*;
-
-import org.jooq.meta.jaxb.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 
