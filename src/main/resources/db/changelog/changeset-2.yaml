@@ -4,7 +4,7 @@ databaseChangeLog:
       author: yourname
       changes:
         - createTable:
-            tableName: example_table
+            tableName: example
             columns:
               - column:
                   name: id

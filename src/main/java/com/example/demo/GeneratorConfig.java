@@ -30,14 +30,19 @@ public class GeneratorConfig {
         var generator1 = new org.jooq.meta.jaxb.Generator()
                 .withDatabase(database)
                 // Generation flags: See advanced configuration properties
-                //.withGenerate( new Generator().withName("org.jooq.codegen.JavaGenerator"))
+                .withGenerate(new org.jooq.meta.jaxb.Generate()
+                        .withPojos(true)
+                        .withSpringAnnotations(true)
+                        .withDaos(true)
+                        .withValidationAnnotations(true)
+                )
                 .withTarget(target);
-        var root = new Jdbc()
+        var jdbc = new Jdbc()
                 .withDriver(detailsProvider.getDriverClassName())
                 .withUrl(detailsProvider.getJdbcUrl())
                 .withUser("root");
         Configuration configuration = new Configuration()
-                .withJdbc(root)
+                .withJdbc(jdbc)
                 .withGenerator(generator1);
 //                .withGenerator(new Generate()
 //
