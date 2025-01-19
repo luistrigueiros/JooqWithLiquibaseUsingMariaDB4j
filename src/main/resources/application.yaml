@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: jooqWithLiquibaseUsingMariaDB4j
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:${mariaDB4j.port}/test
+    username: root
+    password:
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+
+
+mariaDB4j:
+  port: 3307
+
