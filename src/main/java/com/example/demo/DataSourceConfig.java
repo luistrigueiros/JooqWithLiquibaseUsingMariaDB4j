@@ -12,24 +12,23 @@ import javax.sql.DataSource;
 @Slf4j
 @Configuration
 public class DataSourceConfig {
-    private final MyMariaDB4jSpringService mariaDB4j;
+    private final DataSourceDetailsProvider detailsProvider;
 
     @Autowired
-    public DataSourceConfig(MyMariaDB4jSpringService mariaDB4j) {
-        this.mariaDB4j = mariaDB4j;
+    public DataSourceConfig(DataSourceDetailsProvider detailsProvider) {
+        this.detailsProvider = detailsProvider;
     }
 
     @Bean
     public DataSource dataSource() throws ManagedProcessException {
-        String mydb = "mydb";
-        mariaDB4j.createDb(mydb);
-        String url = mariaDB4j.getConfiguration().getURL(mydb);
+        String url = detailsProvider.getJdbcUrl();
         log.info("DataSource URL: {}", url);
         return DataSourceBuilder.create()
-                .driverClassName("org.mariadb.jdbc.Driver")
+                .driverClassName(detailsProvider.getDriverClassName())
                 .url(url)
                 .username("root")
                 .password("")
                 .build();
     }
+
 }
