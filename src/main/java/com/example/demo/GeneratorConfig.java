@@ -35,15 +35,10 @@ public class GeneratorConfig {
 //                        .withNullableAnnotationType("javax.annotation.Nullable")
 //                        .withNonnullAnnotation(true)
 //                        .withNonnullAnnotationType("javax.annotation.Nonnull")
-//                        //.withJpaAnnotations(true)
-//                        //.withJpaVersion(2.2)
 //                        .withValidationAnnotations(true)
 //
 //                        // The springDao flag enables the generation of @Transactional annotations on a
 //                        // generated, Spring-specific DAO
-//                        .withSpringAnnotations(true)
-//                        .withSpringDao(true)
-//                        .withKotlinSetterJvmNameAnnotationsOnIsPrefix(true)
 //                        .withConstructorPropertiesAnnotation(true)
 //                        .withConstructorPropertiesAnnotationOnPojos(true)
 //                        .withConstructorPropertiesAnnotationOnRecords(true));
