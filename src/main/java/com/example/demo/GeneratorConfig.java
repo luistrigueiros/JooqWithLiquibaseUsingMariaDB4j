@@ -19,32 +19,7 @@ public class GeneratorConfig {
 
     @Bean
     public Configuration createConfiguration() {
-        var target = new Target()
-                .withPackageName("org.jooq.your.packagename")
-                .withDirectory("build/jooq-generated");
-        var database = new Database()
-                .withName("org.jooq.meta.mariadb.MariaDBDatabase")
-                .withIncludes(".*")
-                .withExcludes("databasechangelog|databasechangeloglock")
-                .withInputSchema(detailsProvider.getDbName());
-        var generator1 = new org.jooq.meta.jaxb.Generator()
-                .withDatabase(database)
-                // Generation flags: See advanced configuration properties
-                .withGenerate(new org.jooq.meta.jaxb.Generate()
-                        .withPojos(true)
-                        .withSpringAnnotations(true)
-                        .withDaos(true)
-                        .withValidationAnnotations(true)
-                )
-                .withTarget(target);
-        var jdbc = new Jdbc()
-                .withDriver(detailsProvider.getDriverClassName())
-                .withUrl(detailsProvider.getJdbcUrl())
-                .withUser("root");
-        Configuration configuration = new Configuration()
-                .withJdbc(jdbc)
-                .withGenerator(generator1);
-//                .withGenerator(new Generate()
+        //                .withGenerator(new Generate()
 //
 //                        // Possible values for generatedAnnotationType
 //                        // - DETECT_FROM_JDK
@@ -72,6 +47,26 @@ public class GeneratorConfig {
 //                        .withConstructorPropertiesAnnotation(true)
 //                        .withConstructorPropertiesAnnotationOnPojos(true)
 //                        .withConstructorPropertiesAnnotationOnRecords(true));
-        return configuration;
+        return new Configuration()
+                .withJdbc(new Jdbc()
+                        .withDriver(detailsProvider.getDriverClassName())
+                        .withUrl(detailsProvider.getJdbcUrl())
+                        .withUser(detailsProvider.getDbUser())
+                        .withPassword(detailsProvider.getDbPassword()))
+                .withGenerator(new Generator()
+                        .withDatabase(new Database()
+                                .withName("org.jooq.meta.mariadb.MariaDBDatabase")
+                                .withIncludes(".*")
+                                .withExcludes("databasechangelog|databasechangeloglock")
+                                .withInputSchema(detailsProvider.getDbName()))
+                        .withGenerate(new Generate()
+                                .withPojos(true)
+                                .withSpringAnnotations(true)
+                                .withDaos(true)
+                                .withValidationAnnotations(true)
+                        )
+                        .withTarget(new Target()
+                                .withPackageName("org.jooq.your.packagename")
+                                .withDirectory("build/jooq-generated")));
     }
 }

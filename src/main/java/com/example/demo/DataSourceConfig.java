@@ -26,8 +26,8 @@ public class DataSourceConfig {
         return DataSourceBuilder.create()
                 .driverClassName(detailsProvider.getDriverClassName())
                 .url(url)
-                .username("root")
-                .password("")
+                .username(detailsProvider.getDbUser())
+                .password(detailsProvider.getDbPassword())
                 .build();
     }
 

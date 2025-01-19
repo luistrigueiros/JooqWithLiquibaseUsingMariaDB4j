@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 public class DataSourceDetailsProvider {
     private final MyMariaDB4jSpringService mariaDB4j;
     private final String mydb = "mydb";
+    private final String user = "root";
 
     @Autowired
     public DataSourceDetailsProvider(MyMariaDB4jSpringService mariaDB4j) {
@@ -25,6 +26,12 @@ public class DataSourceDetailsProvider {
 
     public String getDbName() {
         return mydb;
+    }
+    public String getDbUser() {
+        return user;
+    }
+    public String getDbPassword() {
+        return "";
     }
 
     @PostConstruct
