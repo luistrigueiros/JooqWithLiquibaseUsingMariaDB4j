@@ -1,0 +1,1 @@
+This example showcases how to integrate JOOQ with Liquibase in a SpringBoot application using MariaDB4j allowing to perform migrations and code generation without having to install install MariaDB4j or use containers
