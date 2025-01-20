@@ -9,6 +9,8 @@ The database is installed and created on the fly on a temporary folder and delet
 
 This is using programatic configuration of JOOQ as is allows to more easly pass into it the MariaDB4j url that is dynamic and generated on the fly.
 
+[GeneratorConfig](src/main/java/com/example/demo/GeneratorConfig.java)
+
 
 # References:
 
